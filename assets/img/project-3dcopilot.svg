@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="3DCopilot placeholder image">
+  <rect width="600" height="600" fill="#eef0f7"/>
+  <g fill="none" stroke="#6b6aa0" stroke-width="3" opacity=".85">
+    <rect x="150" y="150" width="130" height="300" rx="12"/>
+    <rect x="310" y="150" width="140" height="140" rx="12"/>
+    <rect x="310" y="310" width="140" height="140" rx="12"/>
+    <path d="M172 190h86M172 220h60M172 250h76M172 280h50"/>
+    <path d="M332 190h96M332 220h60"/>
+    <circle cx="380" cy="380" r="34"/>
+  </g>
+  <text x="300" y="510" text-anchor="middle" font-family="Inter, sans-serif" font-size="19" fill="#6b6aa0">3DCopilot</text>
+  <text x="300" y="536" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" fill="#6b6aa0" opacity=".75">image placeholder</text>
+</svg>
