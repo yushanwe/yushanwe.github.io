@@ -144,45 +144,36 @@ const PROJECTS = [
    --------------------------------------------------------------- */
 const PUBLICATIONS = [
   {
-    title:
-      "ProgramAT++: LLM-Assisted End-User Authoring of Assistive Technology", // TODO
-    authors: ["Yushan Wei", "Co-Author Placeholder", "Co-Author Placeholder"],
-    venue: "ACM CHI Conference on Human Factors in Computing Systems",
+    title: "Placeholder Publication Title One",
+    authors: ["Author Placeholder", "Co-Author Placeholder"],
+    venue: "Placeholder Conference or Journal",
     year: 2026,
     status: "under-review",
-    thumb: "assets/img/project-programat.svg",
-    thumbAlt: "Thumbnail of the ProgramAT++ system figure",
-    links: [{ label: "Paper", href: "#" }],
+    links: [{ label: "Placeholder Link", href: "#" }],
   },
   {
-    title: "3DCopilot: Grounding Agentic Assistance in 3D Authoring Workflows", // TODO
-    authors: ["Co-Author Placeholder", "Yushan Wei", "Co-Author Placeholder"],
-    venue: "ACM Symposium on User Interface Software and Technology (UIST)",
+    title: "Placeholder Publication Title Two",
+    authors: ["Author Placeholder", "Co-Author Placeholder"],
+    venue: "Placeholder Conference or Journal",
     year: 2025,
     status: "in-preparation",
-    links: [{ label: "Project", href: "#" }],
+    links: [{ label: "Placeholder Link", href: "#" }],
   },
   {
-    title: "ProgramAT: Toward End-User Programmable Assistive Technology", // TODO
-    authors: ["Yushan Wei", "Co-Author Placeholder"],
-    venue: "ACM SIGACCESS Conference on Computers and Accessibility (ASSETS)",
+    title: "Placeholder Publication Title Three",
+    authors: ["Author Placeholder", "Co-Author Placeholder"],
+    venue: "Placeholder Conference or Journal",
     year: 2025,
     status: "published",
-    thumb: "assets/img/project-programat.svg",
-    thumbAlt: "Thumbnail of the ProgramAT interface",
-    links: [
-      { label: "Paper", href: "#" },
-      { label: "Code", href: "#" },
-      { label: "Video", href: "#" },
-    ],
+    links: [{ label: "Placeholder Link", href: "#" }],
   },
   {
-    title: "Placeholder Workshop Paper Title",
-    authors: ["Yushan Wei", "Co-Author Placeholder"],
-    venue: "Placeholder Workshop at CHI",
+    title: "Placeholder Publication Title Four",
+    authors: ["Author Placeholder", "Co-Author Placeholder"],
+    venue: "Placeholder Conference or Journal",
     year: 2024,
     status: "published",
-    links: [{ label: "Paper", href: "#" }],
+    links: [{ label: "Placeholder Link", href: "#" }],
   },
 ];
 
