@@ -88,9 +88,9 @@
   }
 
   const STATUS_LABEL = {
-    published: "Published",
-    "under-review": "Under review",
-    "in-preparation": "In preparation",
+    published: "Placeholder Status",
+    "under-review": "Placeholder Status",
+    "in-preparation": "Placeholder Status",
   };
 
   function pubEntry(p) {

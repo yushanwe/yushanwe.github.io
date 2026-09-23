@@ -57,83 +57,58 @@ const SITE = {
    --------------------------------------------------------------- */
 const PROJECTS = [
   {
-    slug: "programat",
-    title: "ProgramAT / ProgramAT++",
-    tagline: "End-user authoring of assistive technology",
+    slug: "placeholder-project-one",
+    title: "Placeholder Research Project One",
+    tagline: "Placeholder project tagline.",
     image: "assets/img/project-programat.svg",
-    imageAlt:
-      "Placeholder diagram of the ProgramAT authoring interface showing a block editor beside a live device preview",
-    description:
-      "A toolkit that lets occupational therapists and end users build custom assistive technology behaviors without writing code, pairing a block-based editor with live on-device preview. ProgramAT++ extends the system with LLM-assisted suggestions grounded in the user's own task history.",
-    role: "Led system design and implementation; ran the formative study and the 12-participant evaluation.",
-    tags: ["Accessibility", "End-user programming", "Toolkits"],
-    year: "2025",
-    links: [
-      { label: "Paper", href: "#" }, // TODO
-      { label: "Code", href: "#" },
-      { label: "Video", href: "#" },
-    ],
+    imageAlt: "Placeholder project image.",
+    description: "Placeholder project description. Additional project information will be added here.",
+    role: "Placeholder role description.",
+    tags: ["Placeholder Tag", "Placeholder Tag", "Placeholder Tag"],
+    year: "20XX",
+    links: [{ label: "Placeholder Link", href: "#" }],
     detail: true,
-    // Detail-page-only content
-    overview:
-      "Placeholder overview. Describe the problem framing, why existing assistive technology authoring tools fall short, and what ProgramAT contributes.",
+    overview: "Placeholder project overview. Additional information will be added here.",
     sections: [
-      {
-        heading: "Motivation",
-        body: "Placeholder. Assistive technology is highly individual, but the tooling to customize it assumes programming expertise. Describe the gap here.",
-      },
-      {
-        heading: "System",
-        body: "Placeholder. Walk through the architecture: authoring surface, runtime, device abstraction layer, and the LLM assistance loop added in ProgramAT++.",
-      },
-      {
-        heading: "Findings",
-        body: "Placeholder. Summarize the evaluation: who participated, what they built, and what the results say about end-user authoring of AT.",
-      },
+      { heading: "Placeholder Heading", body: "Placeholder section content." },
+      { heading: "Placeholder Heading", body: "Placeholder section content." },
+      { heading: "Placeholder Heading", body: "Placeholder section content." },
     ],
     gallery: [
-      { src: "assets/img/project-programat.svg", alt: "Placeholder screenshot of the ProgramAT editor" },
+      { src: "assets/img/project-programat.svg", alt: "Placeholder project image." },
     ],
   },
   {
-    slug: "3dcopilot",
-    title: "3DCopilot",
-    tagline: "An agentic collaborator for 3D authoring",
+    slug: "placeholder-project-two",
+    title: "Placeholder Research Project Two",
+    tagline: "Placeholder project tagline.",
     image: "assets/img/project-3dcopilot.svg",
-    imageAlt:
-      "Placeholder illustration of a 3D modeling canvas with an agent side panel proposing edits",
-    description:
-      "An agentic assistant for 3D content creation that reads the state of the scene, proposes concrete edits, and explains its reasoning in terms the modeler already uses. The system focuses on keeping the human in control of intent while offloading mechanical steps.",
-    role: "Co-designed the interaction model and built the agent-to-scene grounding layer.",
-    tags: ["Agentic systems", "3D authoring", "Intent understanding"],
-    year: "2025",
-    links: [
-      { label: "Project", href: "#" }, // TODO
-      { label: "Demo", href: "#" },
-    ],
+    imageAlt: "Placeholder project image.",
+    description: "Placeholder project description. Additional project information will be added here.",
+    role: "Placeholder role description.",
+    tags: ["Placeholder Tag", "Placeholder Tag", "Placeholder Tag"],
+    year: "20XX",
+    links: [{ label: "Placeholder Link", href: "#" }],
     detail: true,
-    overview:
-      "Placeholder overview of 3DCopilot: what makes 3D authoring hard to assist, and how grounding an agent in scene state changes the interaction.",
+    overview: "Placeholder project overview. Additional information will be added here.",
     sections: [
-      { heading: "Approach", body: "Placeholder." },
-      { heading: "Interaction design", body: "Placeholder." },
-      { heading: "Status", body: "Placeholder — currently under review." },
+      { heading: "Placeholder Heading", body: "Placeholder section content." },
+      { heading: "Placeholder Heading", body: "Placeholder section content." },
+      { heading: "Placeholder Heading", body: "Placeholder section content." },
     ],
     gallery: [],
   },
   {
-    slug: "wearable-haptics",
-    title: "Wearable Haptic Signaling", // TODO: real title
-    tagline: "Communicating spatial intent on the skin",
+    slug: "placeholder-project-three",
+    title: "Placeholder Research Project Three",
+    tagline: "Placeholder project tagline.",
     image: "assets/img/project-haptics.svg",
-    imageAlt:
-      "Placeholder illustration of a wrist-worn haptic device with directional actuators",
-    description:
-      "A wrist-worn haptic device and encoding scheme for conveying directional and state information without visual attention, studied in both everyday navigation and XR contexts.",
-    role: "Placeholder — describe your contribution.",
-    tags: ["Wearables", "Haptics", "XR"],
-    year: "2024",
-    links: [{ label: "Poster", href: "#" }],
+    imageAlt: "Placeholder project image.",
+    description: "Placeholder project description. Additional project information will be added here.",
+    role: "Placeholder role description.",
+    tags: ["Placeholder Tag", "Placeholder Tag", "Placeholder Tag"],
+    year: "20XX",
+    links: [{ label: "Placeholder Link", href: "#" }],
     detail: false,
   },
 ];
@@ -147,7 +122,7 @@ const PUBLICATIONS = [
     title: "Placeholder Publication Title One",
     authors: ["Author Placeholder", "Co-Author Placeholder"],
     venue: "Placeholder Conference or Journal",
-    year: 2026,
+    year: "20XX",
     status: "under-review",
     links: [{ label: "Placeholder Link", href: "#" }],
   },
@@ -155,7 +130,7 @@ const PUBLICATIONS = [
     title: "Placeholder Publication Title Two",
     authors: ["Author Placeholder", "Co-Author Placeholder"],
     venue: "Placeholder Conference or Journal",
-    year: 2025,
+    year: "20XX",
     status: "in-preparation",
     links: [{ label: "Placeholder Link", href: "#" }],
   },
@@ -163,7 +138,7 @@ const PUBLICATIONS = [
     title: "Placeholder Publication Title Three",
     authors: ["Author Placeholder", "Co-Author Placeholder"],
     venue: "Placeholder Conference or Journal",
-    year: 2025,
+    year: "20XX",
     status: "published",
     links: [{ label: "Placeholder Link", href: "#" }],
   },
@@ -171,7 +146,7 @@ const PUBLICATIONS = [
     title: "Placeholder Publication Title Four",
     authors: ["Author Placeholder", "Co-Author Placeholder"],
     venue: "Placeholder Conference or Journal",
-    year: 2024,
+    year: "20XX",
     status: "published",
     links: [{ label: "Placeholder Link", href: "#" }],
   },
