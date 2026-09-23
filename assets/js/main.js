@@ -148,26 +148,6 @@
 
   /* ---------- page assembly ---------- */
   function renderShell() {
-    const photo = $("#sidebarPhoto");
-    if (photo) {
-      photo.src = SITE.photo;
-      photo.alt = SITE.photoAlt;
-    }
-    set("sidebarName", esc(SITE.name));
-    set(
-      "sidebarRole",
-      `<span>${esc(SITE.role)}</span><span class="is-affil">${esc(SITE.affiliation)}</span>`
-    );
-    set("sidebarTagline", esc(SITE.tagline));
-    // On sub-pages the section anchors have to point back at the homepage.
-    const base = document.getElementById("projectList") ? "" : "index.html";
-    set(
-      "sidenav",
-      SITE.nav
-        .map((n) => `<a href="${base}#${esc(n.id)}">${esc(n.label)}</a>`)
-        .join("")
-    );
-    set("sidebarLinks", SITE.links.map((l) => socialLink(l)).join(""));
     set("footerLinks", SITE.links.map((l) => socialLink(l)).join(""));
     set("footerUpdated", esc(SITE.lastUpdated));
     set("footerName", esc(SITE.name));
@@ -213,64 +193,6 @@
   }
 
   /* ---------- behaviors ---------- */
-  function initNav() {
-    const toggle = $("#navToggle");
-    const sidebar = $("#sidebar");
-    const scrim = $("#navScrim");
-    if (!toggle || !sidebar) return;
-
-    const setOpen = (open) => {
-      sidebar.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
-      if (scrim) {
-        scrim.hidden = !open;
-        requestAnimationFrame(() => scrim.classList.toggle("is-on", open));
-      }
-      document.body.style.overflow = open ? "hidden" : "";
-    };
-
-    toggle.addEventListener("click", () =>
-      setOpen(toggle.getAttribute("aria-expanded") !== "true")
-    );
-    scrim?.addEventListener("click", () => setOpen(false));
-    sidebar.addEventListener("click", (e) => {
-      if (e.target.closest("a") && window.matchMedia("(max-width: 860px)").matches) setOpen(false);
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
-        setOpen(false);
-        toggle.focus();
-      }
-    });
-  }
-
-  // Highlight the nav link for whichever section is in view.
-  function initScrollSpy() {
-    const links = [...document.querySelectorAll("#sidenav a")];
-    if (!links.length) return;
-    const sections = links
-      .map((a) => document.getElementById(a.getAttribute("href").slice(1)))
-      .filter(Boolean);
-
-    const mark = (id) =>
-      links.forEach((a) =>
-        a.setAttribute("aria-current", String(a.getAttribute("href") === "#" + id))
-      );
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (visible) mark(visible.target.id);
-      },
-      { rootMargin: "-25% 0px -65% 0px", threshold: 0 }
-    );
-    sections.forEach((s) => io.observe(s));
-    mark(sections[0].id);
-  }
-
   // Fade-and-rise on first scroll into view; skipped under reduced motion.
   function initReveal() {
     const items = document.querySelectorAll(".reveal");
@@ -335,7 +257,5 @@
   renderShell();
   if (document.getElementById("projectList")) renderHome();
   renderProject();
-  initNav();
   initReveal();
-  if (document.getElementById("sidenav") && document.getElementById("projectList")) initScrollSpy();
 })();
