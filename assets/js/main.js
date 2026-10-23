@@ -63,6 +63,11 @@
       : "";
 
   function projectCard(p) {
+    const media = p.image
+      ? `<div class="pcard__media">
+          <img src="${esc(p.image)}" alt="${esc(p.imageAlt || "")}" loading="lazy">
+        </div>`
+      : "";
     const more = p.detail
       ? `<a href="project.html?p=${encodeURIComponent(p.slug)}">Read more</a>`
       : "";
@@ -79,10 +84,8 @@
       : esc(p.title);
 
     return `
-      <article class="pcard reveal">
-        <div class="pcard__media">
-          <img src="${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="lazy">
-        </div>
+      <article class="pcard${p.image ? "" : " pcard--text"} reveal">
+        ${media}
         <div class="pcard__body">
           ${p.year ? `<p class="pcard__year">${esc(p.year)}</p>` : ""}
           <h3 class="pcard__title">${titleInner}</h3>
@@ -97,12 +100,12 @@
 
   const STATUS_LABEL = {
     published: "Placeholder Status",
-    "under-review": "Placeholder Status",
+    "under-review": "Submitted",
     "in-preparation": "Placeholder Status",
   };
 
   function pubEntry(p) {
-    const authors = p.authors
+    const authors = (p.authors || [])
       .map((a) =>
         a.replace(/\*$/, "") === SITE.name
           ? `<span class="me">${esc(a)}</span>`
@@ -117,8 +120,9 @@
         ${thumb}
         <div>
           <h3 class="pub__title">${esc(p.title)}</h3>
-          <p class="pub__authors">${authors}</p>
+          ${authors ? `<p class="pub__authors">${authors}</p>` : ""}
           <p class="pub__venue">${esc(p.venue)}, ${esc(p.year)}</p>
+          ${p.summary ? `<p class="pub__summary">${esc(p.summary)}</p>` : ""}
           <div class="pub__foot">
             <span class="status status--${esc(p.status)}">${esc(STATUS_LABEL[p.status] || p.status)}</span>
             ${linkList(p.links)}

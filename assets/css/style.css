@@ -56,8 +56,10 @@ a:hover { text-decoration-thickness: 2px; }
 
 .projects { display: grid; gap: 2.5rem; }
 .pcard { display: grid; grid-template-columns: 14rem minmax(0, 1fr); border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.pcard--text { grid-template-columns: 1fr; }
 .pcard__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--line-soft); }
 .pcard__body { padding-left: 1.7rem; }
+.pcard--text .pcard__body { padding-left: 0; }
 .pcard__year, .act__cat { color: var(--blue-dark); font-size: .73rem; font-weight: 650; letter-spacing: .07em; text-transform: uppercase; }
 .pcard__title { margin: .25rem 0; font-size: 1.3rem; }
 .pcard__title a { color: inherit; text-decoration: none; }
@@ -78,9 +80,10 @@ a:hover { text-decoration-thickness: 2px; }
 .pub--nothumb { grid-template-columns: 1fr; }
 .pub__thumb { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--line); }
 .pub__title { margin-bottom: .3rem; font-size: 1rem; }
-.pub__authors, .pub__venue { margin-bottom: .25rem; color: var(--ink-soft); font-size: .89rem; }
+.pub__authors, .pub__venue, .pub__summary { margin-bottom: .25rem; color: var(--ink-soft); font-size: .89rem; }
 .pub__authors .me { color: var(--ink); font-weight: 700; }
 .pub__venue { color: var(--ink-faint); }
+.pub__summary { margin-top: .45rem; }
 .pub__foot { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; margin-top: .5rem; }
 .status { text-transform: uppercase; letter-spacing: .04em; }
 
