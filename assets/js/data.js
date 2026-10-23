@@ -201,7 +201,7 @@ const BEYOND = [
     body: "I enjoy playing a variety of board games, especially chess, poker, and Avalon.",
   },
   {
-    icon: "badminton",
+    icon: "activity",
     title: "Badminton",
     body: "I play badminton twice a week.",
   },
