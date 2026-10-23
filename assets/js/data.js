@@ -22,7 +22,6 @@ const SITE = {
   nav: [
     { id: "about", label: "About" },
     { id: "research", label: "Research" },
-    { id: "publications", label: "Publications" },
     { id: "experience", label: "Experience" },
     { id: "activities", label: "Activities" },
     { id: "beyond", label: "Beyond Research" },
@@ -33,7 +32,6 @@ const SITE = {
     { id: "email", label: "Email", href: "mailto:yushanwe@umich.edu", icon: "mail" },
     { id: "github", label: "GitHub", href: "https://github.com/yushanwe", icon: "github" },
     { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/yushan-wei-903500383", icon: "linkedin" },
-    { id: "scholar", label: "Scholar", href: "#", icon: "scholar" }, // TODO
   ],
 
   interests: [
@@ -103,31 +101,6 @@ const PROJECTS = [
     year: "",
     links: [],
     detail: false,
-  },
-];
-
-/* ---------------------------------------------------------------
-   PUBLICATIONS
-   status: "published" | "under-review" | "in-preparation"
-   --------------------------------------------------------------- */
-const PUBLICATIONS = [
-  {
-    title: "SceneCopilot: Human-AI Co-Creation of 3D Scenes by Integrating Editable Zones and Constraints",
-    authors: ["Yushan Wei", "et al."],
-    venue: "ACM CHI",
-    year: "2027",
-    status: "under-review",
-    summary: "An LLM-assisted authoring system that combines natural-language generation with editable zones and spatial constraints for controllable 3D scene creation.",
-    links: [],
-  },
-  {
-    title: "ATMaker: Conversationally Authoring Visual Assistive Tools",
-    authors: [],
-    venue: "ACM CHI",
-    year: "2027",
-    status: "under-review",
-    summary: "A conversational platform that enables blind and low-vision users to author personalized, camera-based assistive tools with agentic and multimodal AI.",
-    links: [],
   },
 ];
 

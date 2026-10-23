@@ -98,39 +98,6 @@
       </article>`;
   }
 
-  const STATUS_LABEL = {
-    published: "Placeholder Status",
-    "under-review": "Submitted",
-    "in-preparation": "Placeholder Status",
-  };
-
-  function pubEntry(p) {
-    const authors = (p.authors || [])
-      .map((a) =>
-        a.replace(/\*$/, "") === SITE.name
-          ? `<span class="me">${esc(a)}</span>`
-          : esc(a)
-      )
-      .join(", ");
-    const thumb = p.thumb
-      ? `<img class="pub__thumb" src="${esc(p.thumb)}" alt="${esc(p.thumbAlt || "")}" loading="lazy">`
-      : "";
-    return `
-      <article class="pub${p.thumb ? "" : " pub--nothumb"} reveal">
-        ${thumb}
-        <div>
-          <h3 class="pub__title">${esc(p.title)}</h3>
-          ${authors ? `<p class="pub__authors">${authors}</p>` : ""}
-          <p class="pub__venue">${esc(p.venue)}, ${esc(p.year)}</p>
-          ${p.summary ? `<p class="pub__summary">${esc(p.summary)}</p>` : ""}
-          <div class="pub__foot">
-            <span class="status status--${esc(p.status)}">${esc(STATUS_LABEL[p.status] || p.status)}</span>
-            ${linkList(p.links)}
-          </div>
-        </div>
-      </article>`;
-  }
-
   function timelineEntry(e) {
     return `
       <li class="tl reveal">
@@ -187,20 +154,6 @@
     }
 
     set("projectList", PROJECTS.map(projectCard).join(""));
-
-    // Publications, newest year first.
-    const years = [...new Set(PUBLICATIONS.map((p) => p.year))].sort((a, b) => b - a);
-    set(
-      "pubList",
-      years
-        .map(
-          (y) => `<section class="pubyear">
-            <h3 class="pubyear__label">${esc(y)}</h3>
-            ${PUBLICATIONS.filter((p) => p.year === y).map(pubEntry).join("")}
-          </section>`
-        )
-        .join("")
-    );
 
     set("expList", EXPERIENCE.map(timelineEntry).join(""));
     set("actList", ACTIVITIES.map(activityCard).join(""));
