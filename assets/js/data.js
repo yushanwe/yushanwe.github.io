@@ -15,7 +15,7 @@ const SITE = {
     "I study how machines can understand human intent through natural interaction and translate it into meaningful action.",
   photo: "sophie2.jpg",
   photoAlt: "Portrait of Yushan Wei",
-  email: "weiyushansophie@gmail.com",
+  email: "yushanwe@umich.edu",
   lastUpdated: "October 2026",
 
   // Order controls both the sidebar nav and the scroll-spy.
@@ -29,16 +29,15 @@ const SITE = {
   ],
 
   links: [
-    { id: "cv", label: "CV", href: "assets/files/cv.pdf", icon: "file" }, // TODO: add cv.pdf
-    { id: "email", label: "Email", href: "mailto:weiyushansophie@gmail.com", icon: "mail" },
-    { id: "github", label: "GitHub", href: "https://github.com/yushanwe", icon: "github" }, // TODO: confirm handle
-    { id: "linkedin", label: "LinkedIn", href: "#", icon: "linkedin" }, // TODO
+    { id: "cv", label: "CV", href: "YushanWei_CV.pdf", icon: "file" },
+    { id: "email", label: "Email", href: "mailto:yushanwe@umich.edu", icon: "mail" },
+    { id: "github", label: "GitHub", href: "https://github.com/yushanwe", icon: "github" },
+    { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/yushan-wei-903500383", icon: "linkedin" },
     { id: "scholar", label: "Scholar", href: "#", icon: "scholar" }, // TODO
   ],
 
   interests: [
     "Human intent understanding",
-    "Natural interaction",
     "3D scene authoring",
     "Assistive technologies",
     "Interactive simulation",
