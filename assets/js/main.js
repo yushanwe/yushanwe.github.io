@@ -18,6 +18,14 @@
   const isExternal = (href) => /^(https?:)?\/\//.test(href || "");
   const attrs = (href) =>
     isExternal(href) ? ' target="_blank" rel="noopener noreferrer"' : "";
+  const emphasize = (text, phrases = []) => {
+    let html = esc(text);
+    phrases.forEach((phrase) => {
+      const safePhrase = esc(phrase);
+      html = html.replace(safePhrase, `<strong>${safePhrase}</strong>`);
+    });
+    return html;
+  };
 
   /* ---------- icons ---------- */
   const ICONS = {
@@ -158,7 +166,10 @@
   function renderHome() {
     set("heroEyebrow", `${esc(SITE.role)} · ${esc(SITE.affiliation)}`);
     set("about-h", esc(SITE.name));
-    set("heroIntro", SITE.about.map((p) => `<p>${esc(p)}</p>`).join(""));
+    set(
+      "heroIntro",
+      SITE.about.map((p) => `<p>${emphasize(p, SITE.aboutBold)}</p>`).join("")
+    );
     set("heroInterests", SITE.interests.map((i) => `<li>${esc(i)}</li>`).join(""));
     set(
       "heroLinks",

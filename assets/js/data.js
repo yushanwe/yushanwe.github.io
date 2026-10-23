@@ -8,15 +8,15 @@
 
 const SITE = {
   name: "Yushan Wei",
-  role: "Ph.D. Student, Human–Computer Interaction", // TODO: confirm
-  affiliation: "Placeholder University", // TODO
-  lab: "Placeholder Lab", // TODO
+  role: "Senior Undergraduate Student",
+  affiliation: "University of Michigan · Shanghai Jiao Tong University",
+  lab: "",
   tagline:
-    "I build intelligent interactive systems that understand what people are trying to do — and make technology reachable for more of them.",
-  photo: "assets/img/profile.svg", // TODO: replace with a real photo (square, ≥600×600)
+    "I study how machines can understand human intent through natural interaction and translate it into meaningful action.",
+  photo: "sophie2.jpg",
   photoAlt: "Portrait of Yushan Wei",
   email: "weiyushansophie@gmail.com",
-  lastUpdated: "July 2026",
+  lastUpdated: "October 2026",
 
   // Order controls both the sidebar nav and the scroll-spy.
   nav: [
@@ -37,16 +37,26 @@ const SITE = {
   ],
 
   interests: [
-    "Intelligent interactive systems",
-    "Understanding user intent",
-    "Accessibility",
-    "Wearable computing",
-    "Haptics & XR",
+    "Human intent understanding",
+    "Natural interaction",
+    "3D scene authoring",
+    "Assistive technologies",
+    "Interactive simulation",
+    "XR & wearables",
+    "Multimodal sensing",
   ],
 
   about: [
-    "I'm a researcher in human–computer interaction working on systems that infer what a person is trying to accomplish and meet them there. My work sits between interaction technique design and applied machine intelligence.",
-    "Lately I've been thinking about accessible authoring for assistive technology, agentic systems that collaborate on spatial tasks, and how wearable and haptic devices can carry meaning that screens can't.",
+    "I'm Yushan Wei, a senior undergraduate student studying for Computer Science BSE and Math minor at the University of Michigan and Mechanical Engineering BSE at Shanghai Jiao Tong University.",
+    "My research interests lie in how machines can understand human intent through natural interactions and translate subtle movements, gestures, or high-level instructions into meaningful actions.",
+    "My previous research explores this question through 3D scene authoring, personalized assistive technologies, and interactive simulation. Moving forward, I'm excited to investigate more embodied and immersive forms of interaction, especially through XR, wearables, and multimodal sensing.",
+    "I'm applying for PhD programs starting in Fall 2027!",
+  ],
+
+  aboutBold: [
+    "Computer Science BSE and Math minor at the University of Michigan",
+    "Mechanical Engineering BSE at Shanghai Jiao Tong University",
+    "PhD programs starting in Fall 2027",
   ],
 };
 
