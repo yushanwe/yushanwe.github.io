@@ -105,7 +105,7 @@
           <h3 class="tl__role">${esc(e.role)}</h3>
           <span class="cat cat--${esc(e.category)}">${esc(e.category)}</span>
         </div>
-        <p class="tl__meta"><b>${esc(e.org)}</b>${e.location ? " · " + esc(e.location) : ""} · ${esc(e.date)}</p>
+        <p class="tl__meta"><b>${esc(e.org)}</b>${e.location ? ", " + esc(e.location) : ""}. ${esc(e.date)}</p>
         <ul class="tl__bullets">${(e.bullets || []).map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
       </li>`;
   }
@@ -135,7 +135,6 @@
   }
 
   function renderHome() {
-    set("heroEyebrow", `${esc(SITE.role)} · ${esc(SITE.affiliation)}`);
     set("about-h", esc(SITE.name));
     set(
       "heroIntro",
