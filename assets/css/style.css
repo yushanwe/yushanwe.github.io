@@ -1,13 +1,13 @@
 :root {
-  --bg: #fff;
-  --ink: #17212b;
-  --ink-soft: #4d5966;
-  --ink-faint: #71808f;
-  --blue: #72a9d8;
-  --blue-dark: #397baa;
-  --blue-pale: #eef6fc;
-  --line: #d7e8f5;
-  --line-soft: #eaf2f8;
+  --bg: #fffdf9;
+  --ink: #252a27;
+  --ink-soft: #555e58;
+  --ink-faint: #747d77;
+  --blue: #81988b;
+  --blue-dark: #405f50;
+  --blue-pale: #f1f5f2;
+  --line: #dce5df;
+  --line-soft: #edf2ef;
   --font: system-ui, sans-serif;
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
@@ -44,7 +44,7 @@ a:hover { text-decoration-thickness: 2px; }
 .btnrow { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.7rem; }
 .btn, .iconlink { display: inline-flex; align-items: center; gap: .4rem; color: var(--blue-dark); padding: .48rem .75rem; border: 1px solid var(--blue); background: white; text-decoration: none; font-size: .88rem; font-weight: 600; transition: background .18s ease, transform .18s ease; }
 .btn:hover, .iconlink:hover { background: var(--blue-pale); transform: translateY(-1px); }
-.btn--primary { background: var(--blue); color: white; }
+.btn--primary { background: var(--blue-dark); color: white; }
 .btn--primary:hover { background: var(--blue-dark); color: white; }
 .btn svg, .iconlink svg { width: 15px; height: 15px; }
 
