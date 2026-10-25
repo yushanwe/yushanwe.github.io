@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yushanwe.github.io/sitemap.xml
