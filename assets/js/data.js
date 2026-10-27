@@ -22,6 +22,7 @@ const SITE = {
   nav: [
     { id: "about", label: "About" },
     { id: "research", label: "Research" },
+    { id: "featured-projects", label: "Featured Projects" },
     { id: "experience", label: "Experience" },
     { id: "activities", label: "Activities" },
     { id: "beyond", label: "Beyond Research" },
@@ -103,6 +104,73 @@ const PROJECTS = [
     detail: false,
   },
 ];
+
+/* ---------------------------------------------------------------
+   FEATURED ENGINEERING AND SOFTWARE PROJECTS
+   --------------------------------------------------------------- */
+const FEATURED_PROJECTS = [
+  {
+    title: "Millennium Falcon — Autonomous Bridge-Crossing Vehicle",
+    tagline: "An autonomous vehicle designed to traverse narrow bridges using passive mechanical self-correction.",
+    context: "ME2500J, Shanghai Jiao Tong University | Team of 5",
+    highlights: [
+      "Designed a rear-wheel-driven vehicle with suspended guide rods that passively correct lateral deviations without active steering.",
+      "Integrated Arduino-based motor control, color sensing, and a lightweight chassis with 3D-printed components.",
+      "Built and tested a prototype that crossed 40 mm and 60 mm bridge sections in a combined 19.89 seconds, within the 120-second requirement.",
+    ],
+    role: "Contributed to mechanical design and CAD modeling, including the vehicle structure and passive guiding mechanism, as well as component selection, analysis, assembly, and iterative testing.",
+    tags: ["Mechanical Design", "CAD", "Mechatronics", "Prototyping"],
+    youtubeId: "p2K4Rs6bQEQ",
+    videoUrl: "https://youtube.com/shorts/p2K4Rs6bQEQ?feature=share",
+    poster: "figures/me250-poster.jpg",
+    videoLabel: "Play the Millennium Falcon bridge-crossing demonstration",
+    links: [
+      { label: "Presentation", href: "documents/ME250_Group10_Final_Pre.pdf" },
+    ],
+  },
+  {
+    title: "Adaptive Climbing Robot — Vertical Infrastructure Inspection",
+    tagline: "An adaptable climbing robot designed for automated inspection of vertical cylindrical structures.",
+    context: "ME3500J, Shanghai Jiao Tong University | Team of 4",
+    highlights: [
+      "Developed a climbing concept using motor-driven belts and adjustable lead-screw mechanisms for vertical cylindrical surfaces.",
+      "Designed a fail-safe locking concept using self-locking motors to maintain position during power loss.",
+      "Proposed sensor-based diameter adjustment and height monitoring for cylindrical structures of different sizes.",
+    ],
+    role: "Collaborated on mechanical concept development, CAD modeling, climbing and locking mechanisms, design iterations, prototyping, and engineering analysis of structural stability and motor requirements.",
+    tags: ["Robotics", "Mechanical Design", "Mechatronics", "CAD"],
+    youtubeId: "EqbsPTvT3m8",
+    videoUrl: "https://youtu.be/EqbsPTvT3m8",
+    poster: "figures/me350-poster.jpg",
+    videoLabel: "Play the adaptive climbing robot design demonstration",
+    links: [
+      { label: "Presentation", href: "documents/ME350 Design Review-1.pdf" },
+    ],
+  },
+  {
+    title: "EnSight — AI-Powered Physical Interface Recognition",
+    tagline: "An intent-aware visual assistant that helps blind and low-vision users understand and operate unfamiliar physical interfaces.",
+    context: "SURE Starter Project | Individual Project",
+    highlights: [
+      "Built a mobile-first application combining camera recognition, speech interaction, and multimodal AI to identify physical controls.",
+      "Designed step-by-step guidance, spatial descriptions, pointing-based confirmation, and personalized control labels.",
+      "Implemented customizable response styles and accessibility features, with an average response latency of 8.7 seconds across 15 evaluation trials.",
+    ],
+    role: "Sole developer responsible for system design, full-stack development, and evaluation.",
+    tags: ["Human-AI Interaction", "Computer Vision", "Accessibility", "Multimodal AI"],
+    youtubeId: "fqcEnrsVEDg",
+    videoUrl: "https://youtu.be/fqcEnrsVEDg",
+    poster: "figures/ensight-video-poster.jpg",
+    videoLabel: "Play the EnSight application demonstration",
+    links: [
+      { label: "GitHub", href: "https://github.com/yushanwe/ensight_sure" },
+    ],
+  },
+];
+
+// Reserved for future project entries; these are intentionally not rendered yet.
+// UIST: https://youtu.be/KacGFCW8_HI
+// MDP: https://youtu.be/TkuUZyAIt4g?si=hYYQrBg8KkCK7ufR
 
 /* ---------------------------------------------------------------
    EXPERIENCE  —  category: "Research" | "Teaching" | "Industry"

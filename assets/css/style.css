@@ -70,6 +70,22 @@ a:hover { text-decoration-thickness: 2px; }
 .linkrow a { font-size: .86rem; font-weight: 600; text-decoration: none; }
 .linkrow a::after { content: " →"; }
 
+.featured-projects { display: grid; gap: 3rem; }
+.fproject { display: grid; grid-template-columns: minmax(18rem, .9fr) minmax(0, 1.1fr); gap: clamp(1.5rem, 4vw, 3rem); padding-top: 1.5rem; border-top: 1px solid var(--line); align-items: start; }
+.fproject__media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--blue-pale); border: 1px solid var(--line); }
+.fproject__media img, .fproject__media iframe { display: block; width: 100%; height: 100%; border: 0; object-fit: contain; background: #fff; }
+.video-play { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; border: 0; background: transparent; color: white; cursor: pointer; transition: background .18s ease; }
+.video-play span { display: grid; place-items: center; width: 3.25rem; height: 3.25rem; padding-left: .18rem; border-radius: 50%; background: rgb(37 42 39 / 82%); box-shadow: 0 2px 12px rgb(0 0 0 / 18%); font-size: 1.15rem; transition: transform .18s var(--ease), background .18s ease; }
+.video-play:hover { background: rgb(37 42 39 / 6%); }
+.video-play:hover span { transform: scale(1.06); background: var(--blue-dark); }
+.video-play.is-hidden { display: none; }
+.fproject__context { margin-bottom: .3rem; color: var(--blue-dark); font-size: .73rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; }
+.fproject__title { margin-bottom: .35rem; font-size: 1.3rem; }
+.fproject__tagline { margin-bottom: .85rem; color: var(--ink-faint); font-size: .92rem; }
+.fproject__highlights { display: grid; gap: .35rem; margin-bottom: 1rem; }
+.fproject__highlights li { position: relative; padding-left: 1rem; color: var(--ink-soft); font-size: .9rem; }
+.fproject__highlights li::before { content: ""; position: absolute; left: 0; top: .72em; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); }
+
 .pubs { display: grid; gap: 2.5rem; }
 .pubyear { display: grid; gap: 1.25rem; }
 .pubyear__label { display: flex; gap: .8rem; align-items: center; color: var(--blue-dark); font-size: 1rem; }
@@ -136,6 +152,8 @@ a:hover { text-decoration-thickness: 2px; }
   .pcard { grid-template-columns: 1fr; }
   .pcard__media { max-width: 22rem; }
   .pcard__body { padding: 1.1rem 0 0; }
+  .fproject { grid-template-columns: 1fr; gap: 1.25rem; }
+  .fproject__media { width: 100%; }
   .activities, .beyond { grid-template-columns: 1fr; }
 }
 

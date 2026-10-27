@@ -99,6 +99,27 @@
       </article>`;
   }
 
+  function featuredProjectCard(p) {
+    return `
+      <article class="fproject reveal">
+        <div class="fproject__media">
+          <img src="${esc(p.poster)}" alt="" loading="lazy" width="1280" height="720">
+          <button class="video-play" type="button" aria-label="${esc(p.videoLabel)}" data-youtube-id="${esc(p.youtubeId)}" data-video-url="${esc(p.videoUrl)}">
+            <span aria-hidden="true">▶</span>
+          </button>
+        </div>
+        <div class="fproject__body">
+          <p class="fproject__context">${esc(p.context)}</p>
+          <h3 class="fproject__title">${esc(p.title)}</h3>
+          <p class="fproject__tagline">${esc(p.tagline)}</p>
+          <ul class="fproject__highlights">${p.highlights.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
+          <p class="pcard__role"><b>${p.title.startsWith("EnSight") ? "My role" : "My contributions"}:</b> ${esc(p.role)}</p>
+          <ul class="tags">${p.tags.map((tag) => `<li class="tag">${esc(tag)}</li>`).join("")}</ul>
+          ${linkList(p.links)}
+        </div>
+      </article>`;
+  }
+
   function timelineEntry(e) {
     return `
       <li class="tl reveal">
@@ -154,10 +175,28 @@
     }
 
     set("projectList", PROJECTS.map(projectCard).join(""));
+    set("featuredProjectList", FEATURED_PROJECTS.map(featuredProjectCard).join(""));
 
     set("expList", EXPERIENCE.map(timelineEntry).join(""));
     set("actList", ACTIVITIES.map(activityCard).join(""));
     set("beyondList", BEYOND.map(beyondCard).join(""));
+  }
+
+  function initVideos() {
+    document.querySelectorAll(".fproject__media").forEach((media) => {
+      const play = $(".video-play", media);
+      if (!play) return;
+
+      play.addEventListener("click", () => {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(play.dataset.youtubeId)}?autoplay=1&rel=0`;
+        iframe.title = play.getAttribute("aria-label") || "Project video";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        media.replaceChildren(iframe);
+      });
+    });
   }
 
   /* ---------- behaviors ---------- */
@@ -225,5 +264,6 @@
   renderShell();
   if (document.getElementById("projectList")) renderHome();
   renderProject();
+  initVideos();
   initReveal();
 })();
