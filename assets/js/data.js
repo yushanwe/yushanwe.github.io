@@ -122,7 +122,7 @@ const FEATURED_PROJECTS = [
       "Integrated Arduino-based motor control, color sensing, and a lightweight chassis with 3D-printed components.",
       "Built and tested a prototype that crossed 40 mm and 60 mm bridge sections in a combined 19.89 seconds, within the 120-second requirement.",
     ],
-    role: "Contributed to mechanical design and CAD modeling, including the vehicle structure and passive guiding mechanism, as well as component selection, analysis, assembly, and iterative testing.",
+    role: "Contributed to mechanical design, CAD modeling, and mechatronics, including the vehicle structure and passive guiding mechanism, as well as component selection, analysis, assembly, and iterative testing.",
     tags: ["Mechanical Design", "CAD", "Mechatronics", "Prototyping"],
     youtubeId: "p2K4Rs6bQEQ",
     videoUrl: "https://youtube.com/shorts/p2K4Rs6bQEQ?feature=share",
