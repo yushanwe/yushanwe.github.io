@@ -31,11 +31,10 @@ Set `detail: true` on the project and give it a unique `slug`. The page is serve
 by [`project.html`](project.html) at `project.html?p=<slug>` — no new file needed.
 Fill in `overview`, `sections`, and `gallery` for the long-form content.
 
-## Assets to replace
+## Images
 
-- `assets/img/profile.svg` → a real square photo (≥600×600), then update `SITE.photo`
-- `assets/img/project-*.svg` → real system screenshots
-- `assets/files/cv.pdf` → your CV (referenced by `SITE.links`)
+All site images live in `figures/`. Keep them web-sized (≈1200px on the long
+side, JPEG) so the page stays fast.
 
 ## Local preview
 

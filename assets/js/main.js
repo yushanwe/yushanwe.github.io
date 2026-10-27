@@ -147,19 +147,98 @@
       </li>`;
   }
 
-  const activityCard = (a) => `
-      <article class="act reveal">
-        <p class="act__cat">${esc(a.category)}</p>
+  const focusStyle = (focus) => (focus ? ` style="object-position: ${esc(focus)}"` : "");
+
+  // Second image (if any) is laid over the corner of the first as a tilted print.
+  function activityCard(a, i) {
+    const [main, inset] = a.images || [];
+    const media = main
+      ? `<div class="act__media${inset ? " act__media--stack" : ""}">
+          <div class="act__frame">
+            <img class="act__img" src="${esc(main)}" alt="${esc(a.imageAlt || "")}" loading="lazy"${focusStyle(a.focus)}>
+          </div>
+          ${inset ? `<img class="act__inset" src="${esc(inset)}" alt="" loading="lazy">` : ""}
+          <span class="cat act__badge">${esc(a.category)}</span>
+        </div>`
+      : "";
+    return `
+      <article class="act reveal" id="act-${i}" data-act="${i}">
+        ${media}
         <h3 class="act__title">${esc(a.title)}</h3>
         <p class="act__date">${esc(a.date)}</p>
         <p class="act__note">${esc(a.note)}</p>
       </article>`;
+  }
 
-  const beyondCard = (b) => `
-      <article class="by reveal">
+  /* Activity timeline: one bar per activity on a shared month axis. */
+  const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+  const toMonth = (s) => {
+    const [mon, yr] = s.trim().split(/\s+/);
+    return Number(yr) * 12 + MONTHS.indexOf(mon.slice(0, 3).toLowerCase());
+  };
+  function activityTimeline(items) {
+    const spans = items.map((a) => {
+      const [from, to = from] = a.date.split(/\s+-\s+/);
+      return { start: toMonth(from), end: toMonth(to) + 1 };
+    });
+    const min = Math.min(...spans.map((s) => s.start));
+    const max = Math.max(...spans.map((s) => s.end));
+    const share = (months) => ((months / (max - min)) * 100).toFixed(2);
+    const pct = (m) => share(m - min);
+
+    const ticks = [];
+    for (let m = Math.ceil(min / 12) * 12; m < max; m += 12) {
+      ticks.push(`<span class="atl__tick" style="left:${pct(m)}%"><span>${m / 12}</span></span>`);
+    }
+    const rows = items
+      .map((a, i) => {
+        const s = spans[i];
+        return `<li class="atl__row">
+          <span class="atl__label">${esc(a.short || a.title)}</span>
+          <span class="atl__track">
+            <a class="atl__bar" href="#act-${i}" data-act="${i}" style="left:${pct(s.start)}%;width:${share(s.end - s.start)}%" aria-label="${esc(a.title)}, ${esc(a.date)}">
+              <span class="atl__tip">${esc(a.date)}</span>
+            </a>
+          </span>
+        </li>`;
+      })
+      .join("");
+    return `
+      <p class="atl__caption">Timeline</p>
+      <div class="atl__plot">
+        <div class="atl__grid" aria-hidden="true">${ticks.join("")}</div>
+        <ol class="atl__rows">${rows}</ol>
+      </div>`;
+  }
+
+  // Hovering a card lights up its bar, and vice versa.
+  function initActivityLinks() {
+    const pair = (i) => document.querySelectorAll(`[data-act="${i}"]`);
+    document.querySelectorAll("[data-act]").forEach((el) => {
+      const on = (v) => () => pair(el.dataset.act).forEach((n) => n.classList.toggle("is-active", v));
+      el.addEventListener("mouseenter", on(true));
+      el.addEventListener("mouseleave", on(false));
+    });
+  }
+
+  const beyondCard = (b) =>
+    b.image
+      ? `
+      <article class="by by--photo reveal">
+        <div class="by__media">
+          <img src="${esc(b.image)}" alt="${esc(b.imageAlt || "")}" loading="lazy"${focusStyle(b.focus)}>
+        </div>
         <div class="by__icon">${icon(b.icon)}</div>
         <h3 class="by__title">${esc(b.title)}</h3>
         <p class="by__body">${esc(b.body)}</p>
+      </article>`
+      : `
+      <article class="by by--compact reveal">
+        <div class="by__icon">${icon(b.icon)}</div>
+        <div>
+          <h3 class="by__title">${esc(b.title)}</h3>
+          <p class="by__body">${esc(b.body)}</p>
+        </div>
       </article>`;
 
   /* ---------- page assembly ---------- */
@@ -193,8 +272,16 @@
     set("featuredProjectList", FEATURED_PROJECTS.map(featuredProjectCard).join(""));
 
     set("expList", EXPERIENCE.map(timelineEntry).join(""));
+    set("actTimeline", activityTimeline(ACTIVITIES));
     set("actList", ACTIVITIES.map(activityCard).join(""));
-    set("beyondList", BEYOND.map(beyondCard).join(""));
+    const photos = BEYOND.filter((b) => b.image);
+    const compact = BEYOND.filter((b) => !b.image);
+    set(
+      "beyondList",
+      photos.map(beyondCard).join("") +
+        (compact.length ? `<div class="by__stack">${compact.map(beyondCard).join("")}</div>` : "")
+    );
+    initActivityLinks();
   }
 
   function initVideos() {

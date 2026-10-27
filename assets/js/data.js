@@ -13,7 +13,7 @@ const SITE = {
   lab: "",
   tagline:
     "I study how machines can understand human intent through natural interaction and translate it into meaningful action.",
-  photo: "sophie2.jpg",
+  photo: "figures/sophie2.jpg",
   photoAlt: "Portrait of Yushan Wei",
   email: "yushanwe@umich.edu",
   lastUpdated: "October 2026",
@@ -219,54 +219,84 @@ const EXPERIENCE = [
 
 /* ---------------------------------------------------------------
    SELECTED ACTIVITIES
+   `images`: one photo, or two for a stacked collage (2nd is the inset).
+   `focus`: CSS object-position for the cropped main photo.
+   `short`: label used in the activity timeline.
    --------------------------------------------------------------- */
 const ACTIVITIES = [
   {
     category: "Service",
-    title: "Student Volunteer at ACM CHI",
-    date: "Nov 2026",
-    note: "Supported session logistics and accessibility services on site.",
+    title: "Volunteer Teacher, Rural Education Program in Yunnan",
+    short: "Volunteer Teaching",
+    date: "Dec 2023 - Jan 2024",
+    note: "Taught at a rural primary school in Yunnan, designing creative, hands-on lessons for the children.",
+    images: ["figures/volunteer_teaching.jpg"],
+    imageAlt: "Yushan Wei teaching a class of primary school students in Yunnan.",
+    focus: "50% 30%",
   },
   {
     category: "Organization",
     title: "Communications Head of Student Science, Technology, and Innovation Association",
+    short: "SSTIA",
     date: "Apr 2024 - Aug 2025",
     note: "Managed official blog and media channels to connect undergraduates with research opportunities.",
+    images: ["figures/SSTIA1.jpg", "figures/SSTIA2.jpg"],
+    imageAlt: "Yushan Wei speaking at an SSTIA event, and her SolidWorks workshop teaching-assistant badge.",
+    focus: "50% 30%",
   },
   {
     category: "Organization",
     title: "Leader of the College Debate Team",
+    short: "Debate Team",
     date: "Sep 2024 - Aug 2025",
-    note: " Led the college debate team in university-wide competitions, served as a tournament judge, and conducted regular training sessions, including mock debates and debate analysis.",
+    note: "Led the college debate team in university-wide competitions, served as a tournament judge, and conducted regular training sessions, including mock debates and debate analysis.",
+    images: ["figures/debate1.jpg", "figures/debate2.jpg"],
+    imageAlt: "Yushan Wei speaking in a debate round, and a university debate tournament in session.",
+    focus: "70% 50%",
   },
   {
     category: "Organization",
     title: "Member of the University Rowing Team",
+    short: "Rowing Team",
     date: "Sep 2024 - Apr 2025",
     note: "Trained with the women's four weekly.",
+    images: ["figures/rowing.jpg"],
+    imageAlt: "Yushan Wei rowing on the river during team training.",
+    focus: "50% 30%",
   },
   {
     category: "Organization",
     title: "Activity Lead of the College Psychology Association",
+    short: "Psychology Assoc.",
     date: "Dec 2024 - Apr 2025",
     note: "Designed and organized events to improve students' mental health and learning of psychology.",
+    images: ["figures/psychology.jpg"],
+    imageAlt: "Students at a cozy, candle-lit psychology association event.",
   },
   {
     category: "Organization",
     title: "Member of the University Art Center",
+    short: "Art Center",
     date: "Dec 2023 - Apr 2024",
-    note: "Worked as a Stage Manager in the University Singer Competition.",
+    note: "Hosted the University Singer Competition on stage and worked as its Stage Manager behind the scenes.",
+    images: ["figures/hosting.jpg", "figures/stage_manager.jpg"],
+    imageAlt: "Yushan Wei hosting the University Singer Competition on stage, and posing by the competition's poster wall.",
+    focus: "50% 22%",
   },
 ];
 
 /* ---------------------------------------------------------------
    BEYOND RESEARCH
+   Entries with an `image` become photo cards; the rest stay compact.
    --------------------------------------------------------------- */
 const BEYOND = [
   {
-    icon: "pen",
-    title: "Fiction writing",
-    body: "I'm a huge fan of Keigo Higashino and I write short detective stories.",
+    icon: "sparkle",
+    title: "Tarot Reading",
+    body: "I can tell your fortune with tarot cards. Come find me for a reading!",
+    image: "figures/tarot.jpg",
+    imageAlt: "Yushan Wei smiling while giving a tarot reading.",
+    focus: "65% 50%",
   },
   {
     icon: "music",
@@ -282,5 +312,8 @@ const BEYOND = [
     icon: "activity",
     title: "Badminton",
     body: "I play badminton twice a week.",
+    image: "figures/badminton.jpg",
+    imageAlt: "Yushan Wei and a friend on the badminton court.",
+    focus: "35% 40%",
   },
 ];
