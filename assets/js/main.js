@@ -64,7 +64,14 @@
       : "";
 
   function projectCard(p) {
-    const media = p.image
+    const media = p.youtubeId
+      ? `<div class="pcard__media media-embed">
+          <img src="${esc(p.image)}" alt="${esc(p.imageAlt || "")}" loading="lazy" width="1280" height="720">
+          <button class="video-play" type="button" aria-label="${esc(p.videoLabel)}" data-youtube-id="${esc(p.youtubeId)}" data-video-url="${esc(p.videoUrl)}">
+            <span aria-hidden="true">▶</span>
+          </button>
+        </div>`
+      : p.image
       ? `<div class="pcard__media">
           <img src="${esc(p.image)}" alt="${esc(p.imageAlt || "")}" loading="lazy">
         </div>`
@@ -93,6 +100,7 @@
           ${p.tagline ? `<p class="pcard__tagline">${esc(p.tagline)}</p>` : ""}
           <p class="pcard__desc">${esc(p.description)}</p>
           ${p.role ? `<p class="pcard__role"><b>My role:</b> ${esc(p.role)}</p>` : ""}
+          ${p.note ? `<p class="pcard__note">${esc(p.note)}</p>` : ""}
           <ul class="tags">${(p.tags || []).map((t) => `<li class="tag">${esc(t)}</li>`).join("")}</ul>
           ${links ? `<div class="linkrow">${links}</div>` : ""}
         </div>
@@ -102,7 +110,7 @@
   function featuredProjectCard(p) {
     return `
       <article class="fproject reveal">
-        <div class="fproject__media">
+        <div class="fproject__media media-embed">
           <img src="${esc(p.poster)}" alt="" loading="lazy" width="1280" height="720">
           <button class="video-play" type="button" aria-label="${esc(p.videoLabel)}" data-youtube-id="${esc(p.youtubeId)}" data-video-url="${esc(p.videoUrl)}">
             <span aria-hidden="true">▶</span>
@@ -123,12 +131,17 @@
   function timelineEntry(e) {
     return `
       <li class="tl reveal">
-        <div class="tl__top">
-          <h3 class="tl__role">${esc(e.role)}</h3>
-          <span class="cat cat--${esc(e.category)}">${esc(e.category)}</span>
+        <div class="tl__layout">
+          <img class="tl__image" src="${esc(e.image)}" alt="${esc(e.imageAlt)}" loading="lazy" width="640" height="480">
+          <div class="tl__content">
+            <div class="tl__top">
+              <h3 class="tl__role">${esc(e.role)}</h3>
+              <span class="cat cat--${esc(e.category)}">${esc(e.category)}</span>
+            </div>
+            <p class="tl__meta"><b>${esc(e.org)}</b>${e.location ? ", " + esc(e.location) : ""}. ${esc(e.date)}</p>
+            <ul class="tl__bullets">${(e.bullets || []).map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
+          </div>
         </div>
-        <p class="tl__meta"><b>${esc(e.org)}</b>${e.location ? ", " + esc(e.location) : ""}. ${esc(e.date)}</p>
-        <ul class="tl__bullets">${(e.bullets || []).map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
       </li>`;
   }
 
@@ -183,7 +196,7 @@
   }
 
   function initVideos() {
-    document.querySelectorAll(".fproject__media").forEach((media) => {
+    document.querySelectorAll(".media-embed").forEach((media) => {
       const play = $(".video-play", media);
       if (!play) return;
 
