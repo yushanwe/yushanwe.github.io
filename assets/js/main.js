@@ -162,7 +162,7 @@
         </div>`
       : "";
     return `
-      <article class="act reveal" id="act-${i}" data-act="${i}">
+      <article class="act reveal" id="act-${i}" data-act="${i}" style="--c:${seriesColor(i)}">
         ${media}
         <h3 class="act__title">${esc(a.title)}</h3>
         <p class="act__date">${esc(a.date)}</p>
@@ -170,76 +170,110 @@
       </article>`;
   }
 
-  /* Activity timeline: one bar per activity on a shared month axis. */
+  // Categorical series colors, assigned in fixed order (validated for CVD separation).
+  const SERIES = ["#3a76c4", "#e0703f", "#1f9e74", "#6a5acd", "#e2a21a", "#d9739c"];
+  const seriesColor = (i) => SERIES[i % SERIES.length];
+
+  /* Activity donut: one slice per activity, sized by months involved. */
   const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
   const toMonth = (s) => {
     const [mon, yr] = s.trim().split(/\s+/);
     return Number(yr) * 12 + MONTHS.indexOf(mon.slice(0, 3).toLowerCase());
   };
-  function activityTimeline(items) {
-    const spans = items.map((a) => {
-      const [from, to = from] = a.date.split(/\s+-\s+/);
-      return { start: toMonth(from), end: toMonth(to) + 1 };
-    });
-    const min = Math.min(...spans.map((s) => s.start));
-    const max = Math.max(...spans.map((s) => s.end));
-    const share = (months) => ((months / (max - min)) * 100).toFixed(2);
-    const pct = (m) => share(m - min);
+  const monthsOf = (a) => {
+    const [from, to = from] = a.date.split(/\s+-\s+/);
+    return toMonth(to) - toMonth(from) + 1;
+  };
+  const DONUT = { size: 220, r: 80, gap: 3, pop: 7 };
 
-    const ticks = [];
-    for (let m = Math.ceil(min / 12) * 12; m < max; m += 12) {
-      ticks.push(`<span class="atl__tick" style="left:${pct(m)}%"><span>${m / 12}</span></span>`);
-    }
-    const rows = items
+  function activityDonut(items) {
+    const months = items.map(monthsOf);
+    const total = months.reduce((x, y) => x + y, 0);
+    const { size, r, gap, pop } = DONUT;
+    const c = size / 2;
+    const circ = 2 * Math.PI * r;
+    let cum = 0;
+    const slices = items
       .map((a, i) => {
-        const s = spans[i];
-        return `<li class="atl__row">
-          <span class="atl__label">${esc(a.short || a.title)}</span>
-          <span class="atl__track">
-            <a class="atl__bar" href="#act-${i}" data-act="${i}" style="left:${pct(s.start)}%;width:${share(s.end - s.start)}%" aria-label="${esc(a.title)}, ${esc(a.date)}">
-              <span class="atl__tip">${esc(a.date)}</span>
-            </a>
-          </span>
-        </li>`;
+        const frac = months[i] / total;
+        const startDeg = (cum / total) * 360 - 90;
+        const mid = ((cum + months[i] / 2) / total) * 2 * Math.PI;
+        cum += months[i];
+        const len = Math.max(frac * circ - gap, 1).toFixed(2);
+        const dx = (Math.sin(mid) * pop).toFixed(2);
+        const dy = (-Math.cos(mid) * pop).toFixed(2);
+        return `<a class="donut__seg" href="#act-${i}" data-act="${i}" aria-label="${esc(a.title)}: ${months[i]} months"
+            style="--c:${seriesColor(i)};--len:${len};--circ:${circ.toFixed(2)};--dx:${dx}px;--dy:${dy}px;--i:${i}">
+            <circle cx="${c}" cy="${c}" r="${r}" transform="rotate(${startDeg.toFixed(2)} ${c} ${c})"/>
+          </a>`;
       })
       .join("");
+    const legend = items
+      .map(
+        (a, i) => `<li><a class="donut__key" href="#act-${i}" data-act="${i}" style="--c:${seriesColor(i)}">
+            <span class="donut__swatch" aria-hidden="true"></span>
+            <span class="donut__name">${esc(a.short || a.title)}</span>
+            <span class="donut__val">${months[i]} mo</span>
+          </a></li>`
+      )
+      .join("");
     return `
-      <p class="atl__caption">Timeline</p>
-      <div class="atl__plot">
-        <div class="atl__grid" aria-hidden="true">${ticks.join("")}</div>
-        <ol class="atl__rows">${rows}</ol>
+      <div class="donut__figure">
+        <svg class="donut__svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="Months spent on each activity">${slices}</svg>
+        <div class="donut__center" aria-live="polite" data-total="${total}" data-count="${items.length}">
+          <b class="donut__num">${total}</b><span class="donut__label">months across ${items.length} activities</span>
+        </div>
+      </div>
+      <div class="donut__side">
+        <p class="donut__caption">Time spent · months per activity</p>
+        <ul class="donut__legend">${legend}</ul>
       </div>`;
   }
 
-  // Hovering a card lights up its bar, and vice versa.
+  // Hovering a slice, legend key, or card lights up all three; the donut center follows.
   function initActivityLinks() {
-    const pair = (i) => document.querySelectorAll(`[data-act="${i}"]`);
+    const center = $(".donut__center");
+    const num = center && $(".donut__num", center);
+    const label = center && $(".donut__label", center);
+    const reset = () => {
+      if (!center) return;
+      num.textContent = center.dataset.total;
+      label.textContent = `months across ${center.dataset.count} activities`;
+    };
+    const show = (i, on) => {
+      document.querySelectorAll(`[data-act="${i}"]`).forEach((n) => n.classList.toggle("is-active", on));
+      $(".donut")?.classList.toggle("has-active", on);
+      if (!center) return;
+      if (!on) return reset();
+      const a = ACTIVITIES[i];
+      num.textContent = monthsOf(a);
+      label.textContent = `months · ${a.short || a.title}`;
+    };
     document.querySelectorAll("[data-act]").forEach((el) => {
-      const on = (v) => () => pair(el.dataset.act).forEach((n) => n.classList.toggle("is-active", v));
-      el.addEventListener("mouseenter", on(true));
-      el.addEventListener("mouseleave", on(false));
+      const i = el.dataset.act;
+      el.addEventListener("mouseenter", () => show(i, true));
+      el.addEventListener("mouseleave", () => show(i, false));
+      if (el.matches("a")) {
+        el.addEventListener("focus", () => show(i, true));
+        el.addEventListener("blur", () => show(i, false));
+      }
     });
   }
 
-  const beyondCard = (b) =>
-    b.image
-      ? `
-      <article class="by by--photo reveal">
-        <div class="by__media">
-          <img src="${esc(b.image)}" alt="${esc(b.imageAlt || "")}" loading="lazy"${focusStyle(b.focus)}>
+  /* Beyond research: floating photo bubbles, each drifting on its own rhythm. */
+  const beyondBubble = (b, i) => `
+      <figure class="bubble reveal" style="--c:${seriesColor(i + 1)};--i:${i}">
+        <div class="bubble__float">
+          <div class="bubble__photo">
+            <img src="${esc(b.image)}" alt="${esc(b.imageAlt || "")}" loading="lazy"${focusStyle(b.focus)}>
+          </div>
+          <span class="bubble__icon">${icon(b.icon)}</span>
         </div>
-        <div class="by__icon">${icon(b.icon)}</div>
-        <h3 class="by__title">${esc(b.title)}</h3>
-        <p class="by__body">${esc(b.body)}</p>
-      </article>`
-      : `
-      <article class="by by--compact reveal">
-        <div class="by__icon">${icon(b.icon)}</div>
-        <div>
+        <figcaption>
           <h3 class="by__title">${esc(b.title)}</h3>
           <p class="by__body">${esc(b.body)}</p>
-        </div>
-      </article>`;
+        </figcaption>
+      </figure>`;
 
   /* ---------- page assembly ---------- */
   function renderShell() {
@@ -272,14 +306,11 @@
     set("featuredProjectList", FEATURED_PROJECTS.map(featuredProjectCard).join(""));
 
     set("expList", EXPERIENCE.map(timelineEntry).join(""));
-    set("actTimeline", activityTimeline(ACTIVITIES));
+    set("actDonut", activityDonut(ACTIVITIES));
     set("actList", ACTIVITIES.map(activityCard).join(""));
-    const photos = BEYOND.filter((b) => b.image);
-    const compact = BEYOND.filter((b) => !b.image);
     set(
       "beyondList",
-      photos.map(beyondCard).join("") +
-        (compact.length ? `<div class="by__stack">${compact.map(beyondCard).join("")}</div>` : "")
+      `<span class="bubbles__dot" aria-hidden="true"></span>`.repeat(6) + BEYOND.map(beyondBubble).join("")
     );
     initActivityLinks();
   }

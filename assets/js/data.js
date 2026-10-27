@@ -221,7 +221,7 @@ const EXPERIENCE = [
    SELECTED ACTIVITIES
    `images`: one photo, or two for a stacked collage (2nd is the inset).
    `focus`: CSS object-position for the cropped main photo.
-   `short`: label used in the activity timeline.
+   `short`: label used in the activity donut chart.
    --------------------------------------------------------------- */
 const ACTIVITIES = [
   {
@@ -286,8 +286,7 @@ const ACTIVITIES = [
 ];
 
 /* ---------------------------------------------------------------
-   BEYOND RESEARCH
-   Entries with an `image` become photo cards; the rest stay compact.
+   BEYOND RESEARCH  —  each entry is drawn as a floating photo bubble.
    --------------------------------------------------------------- */
 const BEYOND = [
   {
@@ -302,11 +301,16 @@ const BEYOND = [
     icon: "music",
     title: "Guitar",
     body: "I play piano, harmonica, and guitar (not very well orz).",
+    image: "figures/guitar.jpg",
+    imageAlt: "Yushan Wei playing an acoustic guitar.",
+    focus: "30% 50%",
   },
   {
     icon: "game",
     title: "Board Games",
     body: "I enjoy playing a variety of board games, especially chess, poker, and Avalon.",
+    image: "figures/board_games.jpg",
+    imageAlt: "A strategy board game in progress.",
   },
   {
     icon: "activity",
