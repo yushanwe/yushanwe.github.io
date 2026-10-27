@@ -105,15 +105,11 @@ a:hover { text-decoration-thickness: 2px; }
 .pub__foot { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; margin-top: .5rem; }
 .status { text-transform: uppercase; letter-spacing: .04em; }
 
-.timeline { position: relative; }
-.timeline::before { content: ""; position: absolute; left: calc(var(--media-width) + var(--media-gap) + 4px); top: .5rem; bottom: .5rem; width: 2px; background: var(--line); }
-.tl { position: relative; padding-bottom: 2rem; }
-.tl:last-child { padding-bottom: 0; }
-.tl::before { content: ""; position: absolute; z-index: 1; left: calc(var(--media-width) + var(--media-gap)); top: .45rem; width: 10px; height: 10px; background: white; border: 2px solid var(--blue); border-radius: 50%; transition: transform .2s ease; }
-.tl:hover::before { transform: scale(1.25); }
+.timeline { display: grid; gap: 2.5rem; }
+.tl { padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .tl__layout { display: grid; grid-template-columns: var(--media-width) minmax(0, 1fr); gap: var(--media-gap); align-items: start; }
-.tl__image { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--line-soft); }
-.tl__content { padding-left: 1.7rem; }
+.tl__image { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: white; border: 1px solid var(--line-soft); }
+.tl__content { padding-left: 0; }
 .tl__top { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
 .tl__role { font-size: 1.02rem; }
 .cat { text-transform: uppercase; letter-spacing: .05em; }
@@ -161,11 +157,9 @@ a:hover { text-decoration-thickness: 2px; }
   .pcard__body { padding-top: 0; }
   .fproject { grid-template-columns: 1fr; gap: 1.25rem; }
   .fproject__media { width: min(100%, var(--media-width)); }
-  .timeline::before { left: 4px; }
-  .tl::before { left: 0; }
   .tl__layout { grid-template-columns: 1fr; gap: 1rem; }
-  .tl__image { width: min(calc(100% - 1.7rem), var(--media-width)); margin-left: 1.7rem; }
-  .tl__content { padding-left: 1.7rem; }
+  .tl__image { width: min(100%, var(--media-width)); margin-left: 0; }
+  .tl__content { padding-left: 0; }
   .activities, .beyond { grid-template-columns: 1fr; }
 }
 
