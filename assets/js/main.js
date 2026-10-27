@@ -132,7 +132,9 @@
     return `
       <li class="tl reveal">
         <div class="tl__layout">
-          <img class="tl__image" src="${esc(e.image)}" alt="${esc(e.imageAlt)}" loading="lazy" width="640" height="480">
+          <div class="tl__media">
+            <img class="tl__image" src="${esc(e.image)}" alt="${esc(e.imageAlt)}" loading="lazy" width="640" height="480">
+          </div>
           <div class="tl__content">
             <div class="tl__top">
               <h3 class="tl__role">${esc(e.role)}</h3>

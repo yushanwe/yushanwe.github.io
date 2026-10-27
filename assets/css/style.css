@@ -108,7 +108,8 @@ a:hover { text-decoration-thickness: 2px; }
 .timeline { display: grid; gap: 2.5rem; }
 .tl { padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .tl__layout { display: grid; grid-template-columns: var(--media-width) minmax(0, 1fr); gap: var(--media-gap); align-items: start; }
-.tl__image { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: white; border: 1px solid var(--line-soft); }
+.tl__media { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: white; border: 1px solid var(--line-soft); }
+.tl__image { width: 100%; height: 100%; object-fit: contain; }
 .tl__content { padding-left: 0; }
 .tl__top { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
 .tl__role { font-size: 1.02rem; }
@@ -158,7 +159,7 @@ a:hover { text-decoration-thickness: 2px; }
   .fproject { grid-template-columns: 1fr; gap: 1.25rem; }
   .fproject__media { width: min(100%, var(--media-width)); }
   .tl__layout { grid-template-columns: 1fr; gap: 1rem; }
-  .tl__image { width: min(100%, var(--media-width)); margin-left: 0; }
+  .tl__media { width: min(100%, var(--media-width)); }
   .tl__content { padding-left: 0; }
   .activities, .beyond { grid-template-columns: 1fr; }
 }
