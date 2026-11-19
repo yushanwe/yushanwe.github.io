@@ -249,3 +249,8 @@ a:hover { text-decoration-thickness: 2px; }
   .main { width: 100%; padding-inline: 0; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Award highlight note */
+.pcard__note--award { background: #fdf3dc; border-left: 3px solid #c9952b; color: #6b4a0e; font-weight: 600; }
+.pcard__note--award a { color: inherit; text-decoration: underline; text-decoration-color: #c9952b; }
+.pcard__note--award a:hover { color: #8a5d0a; }

@@ -100,7 +100,7 @@
           ${p.tagline ? `<p class="pcard__tagline">${esc(p.tagline)}</p>` : ""}
           <p class="pcard__desc">${esc(p.description)}</p>
           ${p.role ? `<p class="pcard__role"><b>My role:</b> ${esc(p.role)}</p>` : ""}
-          ${p.note ? `<p class="pcard__note">${esc(p.note)}</p>` : ""}
+          ${p.note ? `<p class="pcard__note${p.noteAward ? " pcard__note--award" : ""}">${p.noteLink ? `<a href="${esc(p.noteLink)}" target="_blank" rel="noopener">${esc(p.note)}</a>` : esc(p.note)}</p>` : ""}
           <ul class="tags">${(p.tags || []).map((t) => `<li class="tag">${esc(t)}</li>`).join("")}</ul>
           ${links ? `<div class="linkrow">${links}</div>` : ""}
         </div>
